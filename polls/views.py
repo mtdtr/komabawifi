@@ -68,11 +68,10 @@ def index(request):
                     else:
                         content = content + room_name + str(nouveau_liste[value][1]['numClient'])
                     """
-                    content = content + room_name + " " + str(nouveau_liste[value][1]['numClient']) + "<br>"
+                    content = "<font color='#00aa00'>" + content + room_name + " " + str(nouveau_liste[value][1]['numClient']) + "</font><br>"
                     break
                 elif json_room[room]['availability'] == "quiet": #静粛教室の情報
                     room_name = name(json_room[room]['description'])
-                    content = content + room_name + " " + str(nouveau_liste[value][1]['numClient']) + "<br>"
+                    content = "<font color='#aa00aa'>" + content + room_name + " " + str(nouveau_liste[value][1]['numClient']) + "</font><br>"
                     break
     return HttpResponse(content)
-    
