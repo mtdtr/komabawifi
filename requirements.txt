@@ -4,3 +4,4 @@ Flask
 django-heroku
 dj-database-url
 WhiteNoise
+numpy
