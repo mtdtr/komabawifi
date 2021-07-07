@@ -74,5 +74,5 @@ def index(request):
                     room_name = name(json_room[room]['description'])
                     content = content + room_name + " " + str(nouveau_liste[value][1]['numClient']) + "<br>"
                     break
-    return HttpResponse("Hello, world. You're at the polls index.")
+    return HttpResponse(content)
     
