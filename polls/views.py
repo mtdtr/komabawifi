@@ -55,7 +55,7 @@ def index(request):
     #人数順にソート。
     nouveau_liste = sorted(nouveau_liste.items(), key=lambda x: x[1]['numClient'])
 
-    content = "あ"
+    content = "☆利用可能な教室を表示しますね!☆<br>"
 
     for value in range(len(nouveau_liste)):
         for room in json_room:
