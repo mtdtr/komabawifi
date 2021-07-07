@@ -3,3 +3,4 @@ gunicorn
 Flask
 Django
 django-heroku
+dj-database-url
