@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import loader
 import json
 import urllib.request
 import sys
+import numpy as np
 
 #名前を調整する関数です。
 def name(nom):
@@ -55,7 +57,7 @@ def index(request):
     #人数順にソート。
     nouveau_liste = sorted(nouveau_liste.items(), key=lambda x: x[1]['numClient'])
 
-    content = "<head><title>Komaba-Wifi-List</title></head><body><font color='#000000'>☆利用可能な教室を表示しますね!☆</font><br>"
+    contents = np.empty(0)
 
     for value in range(len(nouveau_liste)):
         for room in json_room:
@@ -68,10 +70,15 @@ def index(request):
                     else:
                         content = content + room_name + str(nouveau_liste[value][1]['numClient'])
                     """
-                    content = "<font color='#00aa00'>" + content + room_name + " " + str(nouveau_liste[value][1]['numClient']) + "</font><br>"
+                    contents = np.append(contents, room_name + " " + str(nouveau_liste[value][1]['numClient']))
                     break
                 elif json_room[room]['availability'] == "quiet": #静粛教室の情報
                     room_name = name(json_room[room]['description'])
-                    content = "<font color='#aa00aa'>" + content + room_name + " " + str(nouveau_liste[value][1]['numClient']) + "</font><br>"
+                    contents = np.append(contents, room_name + " " + str(nouveau_liste[value][1]['numClient']))
                     break
-    return HttpResponse(content)
+    
+    template = loader.get_template('mysite/index.html')
+    context = {
+        'contents': contents,
+    }
+    return HttpResponse(template.render(context, request)))
