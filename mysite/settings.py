@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +25,7 @@ SECRET_KEY = 'django-insecure-qdv*hlkn%^%4)&vm@9#yp)@+)-4q8fws*zv)ne*+cbs34tn7n4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sueakiyamatest.herokuapp.com', 'komabawifi.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -119,12 +118,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-STATIC_ROOT  =   os.path.join(PROJECT_ROOT, 'staticfiles')
-#STATIC_ROOT = os.path.join(BASE_DIR, 'sitestatic')
-#STATICFILES_DIRS = (
-#    os.path.join(BASE_DIR, "static"),
-#)
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'blog/static/'),
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
