@@ -40,17 +40,17 @@ def index(request):
     #各部屋の"合計"を計算します。(同じspace_idのルータの人数をまとめます。)
     nouveau_liste = dict()
     for value in json_l:
-    flag = False
-    if json_l[value]['space_id'] != 'nan' and json_l[value]['space_id'] > 200000000000: #ちなみに100000000000台は本郷です。
-        for value1 in nouveau_liste:
-        if nouveau_liste[value1]['space_id'] == json_l[value]['space_id']:
-            nouveau_liste[value1]['numClient'] += json_l[value]['numClient']
-            flag = True
-            break
-        if not flag:
-        nouveau_liste[value] = dict()
-        nouveau_liste[value]['space_id'] = json_l[value]['space_id']
-        nouveau_liste[value]['numClient'] = json_l[value]['numClient']
+        flag = False
+        if json_l[value]['space_id'] != 'nan' and json_l[value]['space_id'] > 200000000000: #ちなみに100000000000台は本郷です。
+            for value1 in nouveau_liste:
+            if nouveau_liste[value1]['space_id'] == json_l[value]['space_id']:
+                nouveau_liste[value1]['numClient'] += json_l[value]['numClient']
+                flag = True
+                break
+            if not flag:
+            nouveau_liste[value] = dict()
+            nouveau_liste[value]['space_id'] = json_l[value]['space_id']
+            nouveau_liste[value]['numClient'] = json_l[value]['numClient']
 
     #人数順にソート。
     nouveau_liste = sorted(nouveau_liste.items(), key=lambda x: x[1]['numClient'])
