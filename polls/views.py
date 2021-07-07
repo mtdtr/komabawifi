@@ -55,7 +55,7 @@ def index(request):
     #人数順にソート。
     nouveau_liste = sorted(nouveau_liste.items(), key=lambda x: x[1]['numClient'])
 
-    content = "☆利用可能な教室を表示しますね!☆<br>"
+    content = "<head><title>Komaba-Wifi-List</title></head><body><font color='#000000'>☆利用可能な教室を表示しますね!☆</font><br>"
 
     for value in range(len(nouveau_liste)):
         for room in json_room:
