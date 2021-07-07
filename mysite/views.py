@@ -81,4 +81,4 @@ def index(request):
     context = {
         'contents': contents,
     }
-    return HttpResponse(template.render(context, request)))
+    return HttpResponse(template.render(context, request))
