@@ -1,6 +1,5 @@
 urllib3
 gunicorn
 Flask
-Django
 django-heroku
 dj-database-url
