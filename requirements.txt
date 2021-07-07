@@ -2,4 +2,4 @@ urllib3
 gunicorn
 Flask
 Django
-Django-heroku
+django-heroku
