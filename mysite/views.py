@@ -4,6 +4,8 @@ import json
 import urllib.request
 import sys
 
+option = 6
+
 #名前を調整する関数です。
 def name(nom):
   if "室" in nom:
@@ -20,6 +22,32 @@ def name(nom):
     return nom[:idx+1]
   else:
     return nom
+
+def send(day, period):
+  if option == 0:
+    return ""
+  if day == option or option == 6:
+    if day == 1:
+      return "月" + str(period) + "限 "
+    if day == 2:
+      return "火" + str(period) + "限 "
+    if day == 3:
+      return "水" + str(period) + "限 "
+    if day == 4:
+      return "木" + str(period) + "限 "
+    if day == 5:
+      return "金" + str(period) + "限 "
+  else:
+    return ""
+
+def classroom(cle):
+  class_result = ""
+  for day in range(5):
+    for period in range(5):
+      keykey = str(day + 1) + "_" + str(period + 1)
+      if keykey in cle:
+        class_result = class_result + str(send(day+1, period+1))
+  return class_result
 
 
 # Create your views here.
@@ -64,14 +92,14 @@ def index(request):
                     room_name = name(json_room[room]['description'])
                     """
                     if 'class' in json_room[room]:
-                        print('\033[32m', room_name, '\033[0m', nouveau_liste[value][1]['numClient'], '\033[31m', classroom(json_room[room]['class']), '\033[0m')
+                        content = content + "<font color='#00aa00'>" + room_name + "　" + str(nouveau_liste[value][1]['numClient']) + "</font>　<font color='#aa0000'>" + classroom(json_room[room]['class']) + "</font><br>"
                     else:
-                        content = content + room_name + str(nouveau_liste[value][1]['numClient'])
+                        content = content + "<font color='#00aa00'>" + room_name + "　" + str(nouveau_liste[value][1]['numClient']) + "</font><br>"
                     """
-                    content = "<font color='#00aa00'>" + content + room_name + " " + str(nouveau_liste[value][1]['numClient']) + "</font><br>"
+                    content = content + "<font color='#00aa00'>" + room_name + " " + str(nouveau_liste[value][1]['numClient']) + "</font><br>"
                     break
                 elif json_room[room]['availability'] == "quiet": #静粛教室の情報
                     room_name = name(json_room[room]['description'])
-                    content = "<font color='#aa00aa'>" + content + room_name + " " + str(nouveau_liste[value][1]['numClient']) + "</font><br>"
+                    content = content + "<font color='#aa00aa'>" + room_name + "　" + str(nouveau_liste[value][1]['numClient']) + "</font><br>"
                     break
     return HttpResponse(content)
