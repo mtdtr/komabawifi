@@ -6,7 +6,7 @@ import sys
 
 option = 6
 
-#名前を調整する関数です。
+#名前を調整する関数です
 def name(nom):
   if "室" in nom:
     target = "室"
