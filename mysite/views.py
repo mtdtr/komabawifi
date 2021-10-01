@@ -60,7 +60,7 @@ def index(request):
     urllib.request.urlretrieve('https://wifi-monitor.nc.u-tokyo.ac.jp/map/data/ap-data2.json', 'data.json')
 
     #部屋の情報です。(https://wifi-monitor.nc.u-tokyo.ac.jp/map/data/ap.json に"availability"を追加したものです; しばらくは変化しないと思います)
-    urllib.request.urlretrieve('http://mtdmirror.webcrow.jp/komaba/ap.json', 'room.json')
+    urllib.request.urlretrieve('https://kontonspace.web.fc2.com/komaba/ap.json', 'room.json')
 
     #jsonを読みます。
     json_path = open('data.json', 'r', encoding='utf-8')
@@ -99,6 +99,7 @@ def index(request):
                     
                     if 'class' in json_room[room]:
                         content = content + "<font color='#00aa00'>" + room_name + "　</font>" + str(nouveau_liste[value][1]['numClient']) + "　<font color='#aa0000'>" + classroom(json_room[room]['class'], option) + "</font><br>"
+                        break
                     else:
                         content = content + "<font color='#00aa00'>" + room_name + "　</font>" + str(nouveau_liste[value][1]['numClient']) + "<br>"
                     
